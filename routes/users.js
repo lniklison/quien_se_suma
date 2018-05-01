@@ -22,7 +22,7 @@ router.post('/', function (req, res) {
     let errors = req.validationErrors();
 
     if (errors) {
-        throw new Error(errors);
+        res.sendStatus(422);
     }
 
     let newUser = new User({
@@ -39,6 +39,7 @@ router.post('/', function (req, res) {
             }
             newUser.password = hash;
             newUser.save();
+            res.sendStatus(201)
         });
 
     });
