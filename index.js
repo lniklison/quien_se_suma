@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const keys = require('./config/keys');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+const passport = require('passport');
 const expressValidator = require('express-validator');
 require('./models/User');
 
@@ -34,6 +35,12 @@ app.use(bodyParser.json());
 // Connection to mlab (mongo db)
 mongoose.connect(keys.mongoURI);
 
+// Passport Config
+require('./config/passport')(passport);
+
+// // Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Route files
 let users = require('./routes/users');

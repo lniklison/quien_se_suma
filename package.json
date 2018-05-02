@@ -21,7 +21,9 @@
     "express-validator": "^5.1.2",
     "mongoose": "^5.0.16",
     "mongoose-type-email": "^1.0.5",
+    "mongoose-unique-validator": "^2.0.1",
     "nodemon": "^1.17.3",
-    "passport": "^0.4.0"
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
   }
 }
