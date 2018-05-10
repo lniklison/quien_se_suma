@@ -1,10 +1,10 @@
 
 API:
-  ✔ create user @done(18-05-10 20:31)
-  ✔ log user @done(18-05-10 20:31)
+  ✔ create user @done(10-05-10 19:05)
+  ✔ log user @done(11-05-10 20:01)
   ✔ create product @done(18-05-10 20:31)
   ☐ edit product
-  ☐ create order
+  ☐ create shopping cart
   ☐ pay order
 
 UI:
@@ -14,3 +14,7 @@ UI:
   ☐ edit product
   ☐ create order
   ☐ pay order
+
+OTHER STUFF:
+  ☐ Heroku deploy
+  ☐ Connect MongoDB
