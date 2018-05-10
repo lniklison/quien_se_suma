@@ -44,7 +44,9 @@ app.use(passport.session());
 
 // Route files
 let users = require('./routes/users');
+let products = require('./routes/products');
 app.use('/users', users);
+app.use('/products', products);
 
 
 const PORT = process.env.PORT || 3000

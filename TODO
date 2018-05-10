@@ -1,0 +1,16 @@
+
+API:
+  ✔ create user @done(18-05-10 20:31)
+  ✔ log user @done(18-05-10 20:31)
+  ✔ create product @done(18-05-10 20:31)
+  ☐ edit product
+  ☐ create order
+  ☐ pay order
+
+UI:
+  ☐ create user
+  ☐ log user
+  ☐ create product
+  ☐ edit product
+  ☐ create order
+  ☐ pay order
