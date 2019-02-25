@@ -1,26 +1,36 @@
 const mongoose = require('mongoose');
-require('mongoose-type-email');
+
 
 const Schema = mongoose.Schema;
 
-const productSchema = new Schema({
-    name: {
+const tripSchema = new Schema({
+    date: {
         type: String,
         required: true
     },
-    price: {
+    driver: {
         type: String,
         required: true,
     },
-    image: {
+    capacity: {
         type: String,
         required: true,
-    },
-    description: {
+    }, 
+    origin: {
         type: String,
         required: true
+    },
+    destination: {
+        type: String,
+        required: true
+    },
+    passengers: {
+        type: Array
+    },
+    duration: {
+        type: String
     }
 });
 
 
-const Product = module.exports = mongoose.model('products', productSchema);
+const Trip = module.exports = mongoose.model('trips', tripSchema);

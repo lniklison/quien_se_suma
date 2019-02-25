@@ -1,18 +1,20 @@
 const express = require('express');
 const router = express.Router();
-let Product = require('../models/Product');
+let Trip = require('../models/Trip');
 
 router.post('/', function (req, res) {
-
-    const name = req.body.name;
-    const price = req.body.price;
-    const image = req.body.image;
-    const description = req.body.description;
-
-    req.checkBody('name', 'Name is required').notEmpty();
-    req.checkBody('price', 'Price is required').notEmpty();
-    req.checkBody('image', 'Image is not valid').notEmpty();
-    req.checkBody('description', 'Description is required').notEmpty();
+    const date = req.body.date;
+    const driver = req.body.driver;
+    const capacity = req.body.capacity;
+    const origin = req.body.origin;
+    const destination = req.body.destination;
+    const passengers = req.body.passengers;
+    const duration = req.body.duration;
+    
+    req.checkBody('date', 'Date is required').notEmpty();
+    req.checkBody('origin', 'Origin is required').notEmpty();
+    req.checkBody('destination', 'Destination is not valid').notEmpty();
+    req.checkBody('capacity', 'Capacity is required').notEmpty();
 
     let errors = req.validationErrors();
 
@@ -20,14 +22,17 @@ router.post('/', function (req, res) {
         res.sendStatus(422);
     }
 
-    let newProduct = new Product({
-        name: name,
-        price: price,
-        image: image,
-        description: description
+    let newTrip = new Trip({
+        date: date,
+        driver: driver,
+        capacity: capacity,
+        origin: origin,
+        destination: destination,
+        passengers: passengers,
+        duration: duration
     });
 
-    newProduct.save(function (err) {
+    newTrip.save(function (err) {
         if (err) {
             console.log(err);
         } else res.sendStatus(201);
