@@ -2,7 +2,9 @@
 API:
   ✔ create user @done(10-05-10 19:05)
   ✔ log user @done(11-05-10 20:01)
+  ☐ user profile @started(18-05-10 21:12)
   ✔ create product @done(18-05-10 20:31)
+  ☐ product profile
   ☐ edit product
   ☐ create shopping cart
   ☐ pay order
@@ -16,5 +18,5 @@ UI:
   ☐ pay order
 
 OTHER STUFF:
-  ☐ Heroku deploy
-  ☐ Connect MongoDB
+  ✔ Heroku deploy @done(18-05-10 20:55)
+  ✔ Connect MongoDB @done(18-05-10 20:55)

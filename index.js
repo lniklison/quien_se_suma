@@ -4,11 +4,23 @@ const keys = require('./config/keys');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const expressValidator = require('express-validator');
-require('./models/User');
+const session = require('express-session');
+const mongoStore = require('connect-mongo')(session);
 
 const app = express();
 
-// Use validator
+// Connection to mlab (mongo db)
+mongoose.connect(keys.mongoURI);
+
+app.use(session({
+    secret: 'max',
+    saveUninitialized: false,
+    resave: false,
+    store: new mongoStore({
+        mongooseConnection: mongoose.connection
+    }) 
+}));
+
 app.use(expressValidator({
     errorFormatter: function (param, msg, value) {
         var namespace = param.split('.'),
@@ -26,14 +38,10 @@ app.use(expressValidator({
     }
 }));
 
-// Parse request
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
-
-// Connection to mlab (mongo db)
-mongoose.connect(keys.mongoURI);
 
 // Passport Config
 require('./config/passport')(passport);
