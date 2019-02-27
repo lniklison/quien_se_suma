@@ -27,7 +27,7 @@ const tripSchema = new Schema({
     passengers: {
         type: Array
     },
-    diracion: {
+    duracion: {
         type: String
     },
     latLngOrigen: {

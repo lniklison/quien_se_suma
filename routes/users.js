@@ -11,6 +11,12 @@ router.post('/', function (req, res) {
     const username = req.body.username;
     const password = req.body.password;
     const password2 = req.body.password2;
+    const marca_auto = req.body.marca_auto;
+    const modelo_auto = req.body.modelo_auto;
+    const year = req.body.year;
+    const patente = req.body.patente;
+    const observaciones = req.body.observaciones;
+    const fotos = req.body.fotos;
 
     req.checkBody('name', 'Name is required').notEmpty();
     req.checkBody('email', 'Email is required').notEmpty();
@@ -29,7 +35,13 @@ router.post('/', function (req, res) {
         name: name,
         email: email,
         username: username,
-        password: password
+        password: password,
+        marca_auto: marca_auto,
+        modelo_auto: modelo_auto,
+        year: year,
+        patente: patente,
+        observaciones: observaciones,
+        fotos: fotos
     });
 
     bcrypt.genSalt(10, function (err, salt) {

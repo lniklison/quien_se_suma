@@ -6,15 +6,16 @@ router.post('/', function (req, res) {
     const date = req.body.date;
     const driver = req.body.driver;
     const capacity = req.body.capacity;
-    const origin = req.body.origin;
-    const destination = req.body.destination;
+    const origen = req.body.origen;
+    const destino = req.body.destino;
     const passengers = req.body.passengers;
-    const duration = req.body.duration;
-    
-    req.checkBody('date', 'Date is required').notEmpty();
-    req.checkBody('origin', 'Origin is required').notEmpty();
-    req.checkBody('destination', 'Destination is not valid').notEmpty();
-    req.checkBody('capacity', 'Capacity is required').notEmpty();
+    const duracion = req.body.duracion;
+    const latLngOrigen = req.body.latLngOrigen;
+    const latLngDestino = req.body.latLngDestino;
+    const fecha_salida = req.body.fecha_salida;
+    const hora_salida = req.body.hora_salida;
+    const hora_salida = req.body.hora_salida;
+    const asignado = req.body.asignado;
 
     let errors = req.validationErrors();
 
@@ -26,10 +27,16 @@ router.post('/', function (req, res) {
         date: date,
         driver: driver,
         capacity: capacity,
-        origin: origin,
-        destination: destination,
+        origen: origen,
+        destino: destino,
         passengers: passengers,
-        duration: duration
+        duracion: duracion,
+        latLngOrigen: latLngOrigen,
+        latLngDestino: latLngDestino,
+        fecha_salida: fecha_salida,
+        hora_salida: hora_salida,
+        hora_salida: hora_salida,
+        asignado: asignado
     });
 
     newTrip.save(function (err) {
