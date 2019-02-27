@@ -16,20 +16,39 @@ const tripSchema = new Schema({
         type: String,
         required: true,
     }, 
-    origin: {
+    origen: {
         type: String,
         required: true
     },
-    destination: {
+    destino: {
         type: String,
         required: true
     },
     passengers: {
         type: Array
     },
-    duration: {
+    diracion: {
         type: String
-    }
+    },
+    latLngOrigen: {
+        type: String
+    },
+    latLngDestino: {
+        type: String
+    },
+    fecha_salida: {
+        type: String
+    },
+    hora_salida: {
+        type: Integer
+    },
+    hora_salida: {
+        type: Integer
+    },
+    asignado: {
+        type: Boolean
+    },
+
 });
 
 

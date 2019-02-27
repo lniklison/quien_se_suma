@@ -22,7 +22,22 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    googleId: {
+    marca_auto: {
+        type: String,
+    },
+    modelo_auto: {
+        type: String,
+    },
+    year: {
+        type: Number,
+    },
+    patente: {
+        type: String,
+    },
+    observaciones: {
+        type: String,
+    },
+    fotos: {
         type: String,
     }
 });
