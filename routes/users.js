@@ -78,6 +78,57 @@ router.get('/profile' ,function (req, res) {
    res.send(pepe);
 });
 
+
+router.get('/', (req, res) => {
+    User
+        .find({})
+        .exec( (err, user) => {
+        
+        // if there was a error
+        if (err)
+            return res.status(500).json({
+                ok: false,
+                msj: 'Error getting users',
+                errors: err
+            });
+
+        // return a user list
+        return res.json({
+            ok: true,
+            data: user
+        });
+    });
+});
+
+router.get('/:id', (req, res, next) => {
+    var id = req.params.id;
+    User
+        .findById(id)
+        .exec( (err, user) => {
+            
+        // if there was a error
+        if (err)
+            return res.status(500).json({
+                ok: false,
+                msj: 'Error getting the user',
+                errors: err
+            });
+
+        // if id does not exists
+        if (!user)
+            return res.status(500).json({
+                ok: false,
+                msj: 'Error, wrong id',
+            });
+
+        // return a given user
+        return res.json({
+            ok: true,
+            data: user
+        });
+    });
+});
+
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) {
         next();
