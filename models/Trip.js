@@ -4,15 +4,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const tripSchema = new Schema({
-    date: {
-        type: String,
-        required: true
-    },
-    driver: {
+    id_conductor: {
         type: String,
         required: true,
     },
-    capacity: {
+    pasajeros: {
         type: String,
         required: true,
     }, 
@@ -24,17 +20,17 @@ const tripSchema = new Schema({
         type: String,
         required: true
     },
-    passengers: {
+    id_pasajeros: {
         type: Array
     },
     duracion: {
         type: String
     },
     latLngOrigen: {
-        type: String
+        type: Array
     },
     latLngDestino: {
-        type: String
+        type: Array
     },
     fecha_salida: {
         type: String
@@ -44,10 +40,7 @@ const tripSchema = new Schema({
     },
     minuto_salida: {
         type: String
-    },
-    asignado: {
-        type: Boolean
-    },
+    }
 
 });
 

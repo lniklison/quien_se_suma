@@ -8,19 +8,18 @@ router.post('/', (req, res) => {
     let body = req.body;
     
     let trip = new Trip({
-        date: body.date,
-        driver: body.driver,
-        capacity: body.capacity,
+        
+        id_conductor: body.id_conductor,
+        pasajeros: body.pasajeros,
         origen: body.origen,
         destino: body.destino,
-        passengers: body.passengers,
+        id_pasajeros: body.id_pasajeros,
         duracion: body.duracion,
         latLngOrigen: body.latLngOrigen,
         latLngDestino: body.latLngDestino,
         fecha_salida: body.fecha_salida,
         hora_salida: body.hora_salida,
-        minuto_salida: body.minuto_salida,
-        asignado: body.asignado
+        minuto_salida: body.minuto_salida
     });
 
 
@@ -99,8 +98,8 @@ router.put('/:id', async (req, res) => {
     
     let body = req.body;
     
-    let newPassengers = body.passengers;
-    let capacity = body.capacity;
+    let newPassengers = body.id_pasajeros;
+    let capacity = body.pasajeros;
 
     try {
         let trip = await Trip.findById(tripId);
@@ -110,7 +109,7 @@ router.put('/:id', async (req, res) => {
             throw new Error('The trip is already full');
         }
 
-        trip.passengers = newPassengers;
+        trip.id_pasajeros = newPassengers;
 
         
         let tripDB = await trip.save();
