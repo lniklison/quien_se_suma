@@ -47,5 +47,54 @@ router.post('/', function (req, res) {
 
 });
 
+router.get('/', (req, res) => {
+    Trip
+        .find({})
+        .exec( (err, trip) => {
+        
+        // if there was a error
+        if (err)
+            return res.status(500).json({
+                ok: false,
+                msj: 'Error getting trips',
+                errors: err
+            });
+
+        // return a trip list
+        return res.json({
+            ok: true,
+            data: trip
+        });
+    });
+});
+
+router.get('/:id', (req, res) => {
+    var id = req.params.id;
+    Trip
+        .findById(id)
+        .exec( (err, trip) => {
+            
+        // if there was a error
+        if (err)
+            return res.status(500).json({
+                ok: false,
+                msj: 'Error getting the trip',
+                errors: err
+            });
+        
+        // if id does not exists
+        if (!trip)
+            return res.status(500).json({
+                ok: false,
+                msj: 'Error, wrong id',
+            });
+
+        // return a given trip
+        return res.json({
+            ok: true,
+            data: trip
+        });
+    });
+});
 
 module.exports = router;
