@@ -4,58 +4,41 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 let User = require('../models/User');
 
-router.post('/', function (req, res) {
 
-    const name = req.body.name;
-    const email = req.body.email;
-    const username = req.body.username;
-    const password = req.body.password;
-    const password2 = req.body.password2;
-    const marca_auto = req.body.marca_auto;
-    const modelo_auto = req.body.modelo_auto;
-    const year = req.body.year;
-    const patente = req.body.patente;
-    const observaciones = req.body.observaciones;
-    const fotos = req.body.fotos;
-
-    req.checkBody('name', 'Name is required').notEmpty();
-    req.checkBody('email', 'Email is required').notEmpty();
-    req.checkBody('email', 'Email is not valid').isEmail();
-    req.checkBody('username', 'Username is required').notEmpty();
-    req.checkBody('password', 'Password is required').notEmpty();
-    req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
-
-    let errors = req.validationErrors();
-
-    if (errors) {
-        res.sendStatus(422);
-    }
-
-    let newUser = new User({
-        name: name,
-        email: email,
-        username: username,
-        password: password,
-        marca_auto: marca_auto,
-        modelo_auto: modelo_auto,
-        year: year,
-        patente: patente,
-        observaciones: observaciones,
-        fotos: fotos
+router.post('/', (req, res) => {
+    
+    let body = req.body;
+    
+    let user = new User({
+        name: body.name,
+        email: body.email,
+        username: body.username,
+        password: body.password,
+        marca_auto: body.marca_auto,
+        modelo_auto: body.modelo_auto,
+        year: body.year,
+        patente: body.patente,
+        observaciones: body.observaciones,
+        fotos: body.fotos
     });
+    
+    user.save(
+        (err, userDB) => {
 
-    bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(newUser.password, salt, function (err, hash) {
-            if (err) {
-                console.log(err);
-            }
-            newUser.password = hash;
-            newUser.save();
-            res.sendStatus(201)
+        
+        if (err)
+            return res.status(400).json({
+                ok: false,
+                msj: 'Error creating User',
+                errors: err
+            });
+    
+        
+        return res.json({
+            ok: true,
+            data: userDB
         });
-
     });
-
 });
 
 router.post('/login', function (req, res, next) {
@@ -74,7 +57,7 @@ router.get('/logout', function (req, res) {
 
 
 router.get('/profile' ,function (req, res) {
-   var pepe = req.session;
+   let pepe = req.session;
    res.send(pepe);
 });
 
@@ -84,7 +67,7 @@ router.get('/', (req, res) => {
         .find({})
         .exec( (err, user) => {
         
-        // if there was a error
+        
         if (err)
             return res.status(500).json({
                 ok: false,
@@ -92,7 +75,7 @@ router.get('/', (req, res) => {
                 errors: err
             });
 
-        // return a user list
+        
         return res.json({
             ok: true,
             data: user
@@ -101,12 +84,12 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res, next) => {
-    var id = req.params.id;
+    let id = req.params.id;
     User
         .findById(id)
         .exec( (err, user) => {
             
-        // if there was a error
+        
         if (err)
             return res.status(500).json({
                 ok: false,
@@ -114,14 +97,14 @@ router.get('/:id', (req, res, next) => {
                 errors: err
             });
 
-        // if id does not exists
+        
         if (!user)
             return res.status(500).json({
                 ok: false,
                 msj: 'Error, wrong id',
             });
 
-        // return a given user
+        
         return res.json({
             ok: true,
             data: user
