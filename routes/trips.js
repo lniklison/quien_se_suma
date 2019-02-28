@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+var _ = require('lodash');
 let Trip = require('../models/Trip');
 
 router.post('/', (req, res) => {
@@ -91,6 +92,55 @@ router.get('/:id', (req, res) => {
             data: trip
         });
     });
+});
+
+router.put('/:id', async (req, res) => {
+    let tripId = req.params.id;
+    // parse body request
+    let body = req.body;
+    
+    let newPassengers = body.passengers;
+    let capacity = body.capacity;
+
+    try {
+
+        // if trip is 'Closed', do not allow add user
+        if (_.size(newPassengers) == capacity) {
+            throw new Error('The trip is already full');
+        }
+
+
+        // decrement user stock
+        user.stock -= newUser.quantity;
+
+        // save user
+        let userDB = await user.save();
+
+        // add user to trip
+        // if the Trip already has that user increment the quantity
+        if(trip.items.id(newUser._id)){
+            trip.items.id(newUser._id).quantity += newUser.quantity
+        } else { // if not, add it to items
+            trip.items.push(newUser);
+        }
+
+        // save trip
+        let tripDB = await trip.save();
+
+        // return updated trip
+        return res.json({
+            ok: true,
+            data: tripDB
+        });
+    
+    } catch (err) {
+        return res.status(500).json({
+            ok: false,
+            msj: 'Error adding user to trip',
+            errors: err.message
+        });
+    }
+
 });
 
 module.exports = router;

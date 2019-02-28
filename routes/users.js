@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+var _ = require('lodash');
 let User = require('../models/User');
 
 
@@ -118,4 +119,6 @@ function isLoggedIn(req, res, next) {
     }
     res.redirect('/login');
 }
+
+
 module.exports = router;
