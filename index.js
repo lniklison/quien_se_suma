@@ -53,8 +53,10 @@ app.use(passport.session());
 // Route files
 let users = require('./routes/users');
 let trips = require('./routes/trips');
+let passengers = require('./routes/passengers');
 app.use('/users', users);
 app.use('/trips', trips);
+app.use('/passengers', passengers);
 
 
 const PORT = process.env.PORT || 3000

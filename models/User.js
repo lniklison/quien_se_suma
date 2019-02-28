@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 require('mongoose-type-email');
- const uniqueValidator = require('mongoose-unique-validator');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const Schema = mongoose.Schema;
 
