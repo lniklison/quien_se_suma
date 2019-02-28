@@ -27,10 +27,12 @@ const tripSchema = new Schema({
         type: String
     },
     latLngOrigen: {
-        type: Array
+        latitude: Number,
+        longitude: Number
     },
     latLngDestino: {
-        type: Array
+        latitude: Number,
+        longitude: Number
     },
     fecha_salida: {
         type: String
