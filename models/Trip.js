@@ -40,10 +40,10 @@ const tripSchema = new Schema({
         type: String
     },
     hora_salida: {
-        type: Integer
+        type: String
     },
-    hora_salida: {
-        type: Integer
+    minuto_salida: {
+        type: String
     },
     asignado: {
         type: Boolean

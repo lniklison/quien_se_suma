@@ -14,7 +14,7 @@ router.post('/', function (req, res) {
     const latLngDestino = req.body.latLngDestino;
     const fecha_salida = req.body.fecha_salida;
     const hora_salida = req.body.hora_salida;
-    const hora_salida = req.body.hora_salida;
+    const minuto_salida = req.body.minuto_salida;
     const asignado = req.body.asignado;
 
     let errors = req.validationErrors();
@@ -35,7 +35,7 @@ router.post('/', function (req, res) {
         latLngDestino: latLngDestino,
         fecha_salida: fecha_salida,
         hora_salida: hora_salida,
-        hora_salida: hora_salida,
+        minuto_salida: minuto_salida,
         asignado: asignado
     });
 
